@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { Text } from "vcc-ui";
 import { useFakeFetchCar } from "../../src/hooks/client";
 
 function Learn() {
@@ -9,14 +10,14 @@ function Learn() {
 
   switch (fetchedCar.status) {
     case "loading":
-      return <div>Loading...</div>;
+      return <Text>Loading...</Text>;
 
     case "success":
-      return <p>Learn - Car id: {pid}</p>;
+      return <Text>Learn page - Car id: {pid}</Text>;
 
     case "error":
       return (
-        <p>{`Failed showing car with error: ${fetchedCar.error.message}`}</p>
+        <Text>{`Failed showing car with error: ${fetchedCar.error.message}`}</Text>
       );
 
     default:
