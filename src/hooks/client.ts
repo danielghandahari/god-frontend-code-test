@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import carData from "../../public/api/cars.json";
 import { Car } from "../types";
 
@@ -17,18 +17,20 @@ export function useFakeFetchCar(
     status: "loading",
   });
 
-  setTimeout(() => {
-    const car = cars.find((c) => carId === c.id);
+  useEffect(() => {
+    setTimeout(() => {
+      const car = cars.find((c) => carId === c.id);
 
-    if (!car) {
-      setFetchResultState({
-        status: "error",
-        error: new Error(`Invalid car id: ${carId}`),
-      });
-    } else {
-      setFetchResultState({ status: "success", data: car });
-    }
-  }, FAKE_LOADING_TIME);
+      if (!car) {
+        setFetchResultState({
+          status: "error",
+          error: new Error(`Invalid car id: ${carId}`),
+        });
+      } else {
+        setFetchResultState({ status: "success", data: car });
+      }
+    }, FAKE_LOADING_TIME);
+  }, [carId]);
 
   return fetchResultState;
 }
@@ -38,12 +40,14 @@ export function useFakeFetchCars(): FetchResult<Car[]> {
     status: "loading",
   });
 
-  setTimeout(() => {
-    setFetchResultState({
-      status: "success",
-      data: cars,
-    });
-  }, FAKE_LOADING_TIME);
+  useEffect(() => {
+    setTimeout(() => {
+      setFetchResultState({
+        status: "success",
+        data: cars,
+      });
+    }, FAKE_LOADING_TIME);
+  }, []);
 
   return fetchResultState;
 }
