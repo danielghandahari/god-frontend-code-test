@@ -5,6 +5,9 @@ import type { AppProps /*, AppContext */ } from "next/app";
 // TODO USE?
 // import "../public/css/styles.css";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <React.StrictMode>
